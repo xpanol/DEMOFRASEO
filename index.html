@@ -1083,27 +1083,27 @@ async function init() {
         await addPlayer(BASE_URL+'Z'+n+'_en.mp3', BASE_URL+'Z'+n+'_en.json', 'en');
     }
 }
-
 document.addEventListener('DOMContentLoaded', () => { init(); updateBranding(); });
 </script>
-<button onclick="testXpanolActivity()">
-    TEST ACTIVITY
-</button>
 
 <script src="activity.js"></script>
 
+<button onclick="completeFraseoDemo()">
+    COMPLETE SESSION
+</button>
+
 <script>
-function testXpanolActivity() {
+function completeFraseoDemo() {
     logXpanolActivity({
         module: "FRASEO",
         sector: "Digital Marketing",
-        activity: "4 phrases completed",
-        completed: true,
-        duration: 8
+        activity: "Demo session completed",
+        completed: true
     });
 
-    alert("Activity logged.");
+    window.location.href = "my-xpanol.html";
 }
 </script>
+</body>
 </body>
 </html
