@@ -1086,6 +1086,24 @@ async function init() {
 
 document.addEventListener('DOMContentLoaded', () => { init(); updateBranding(); });
 </script>
+<button onclick="testXpanolActivity()">
+    TEST ACTIVITY
+</button>
 
+<script src="activity.js"></script>
+
+<script>
+function testXpanolActivity() {
+    logXpanolActivity({
+        module: "FRASEO",
+        sector: "Digital Marketing",
+        activity: "4 phrases completed",
+        completed: true,
+        duration: 8
+    });
+
+    alert("Activity logged.");
+}
+</script>
 </body>
 </html
