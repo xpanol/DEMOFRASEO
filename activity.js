@@ -22,24 +22,53 @@ function saveXpanolActivity(activity) {
     );
 }
 
-function logXpanolActivity({
-    module,
-    sector = "",
-    activity = "",
-    completed = true,
-    duration = null
+function updateFraseoActivity({
+    exerciseId,
+    language,
+    sentenceNumber,
+    shaCompleted = false,
+    retoCompleted = false,
+    retoScore = null
 }) {
     const activities = getXpanolActivity();
 
-    activities.push({
-        id: Date.now(),
-        date: new Date().toISOString(),
-        module,
-        sector,
-        activity,
-        completed,
-        duration
-    });
+    let item = activities.find(activity =>
+        activity.module === "FRASEO" &&
+        activity.exerciseId === exerciseId
+    );
+
+    if (!item) {
+        item = {
+            id: Date.now(),
+            date: new Date().toISOString(),
+            module: "FRASEO",
+            sector: "Digital Marketing",
+            exerciseId,
+            language,
+            sentenceNumber,
+            shaCompleted: false,
+            retoCompleted: false,
+            retoScore: null,
+            completion: 0
+        };
+
+        activities.push(item);
+    }
+
+    if (shaCompleted) {
+        item.shaCompleted = true;
+    }
+
+    if (retoCompleted) {
+        item.retoCompleted = true;
+        item.retoScore = retoScore;
+    }
+
+    item.completion =
+        (item.shaCompleted ? 50 : 0) +
+        (item.retoCompleted ? 50 : 0);
+
+    item.date = new Date().toISOString();
 
     saveXpanolActivity(activities);
 }
