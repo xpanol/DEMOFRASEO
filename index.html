@@ -707,6 +707,7 @@ function filterPlayersByTag() {
 }
 
 async function addPlayer(aUrl, jUrl, type) {
+    console.log('XPANOL ADDPLAYER:', aUrl, jUrl);
     try {
         const res = await fetch(jUrl);
         const data = await res.json();
