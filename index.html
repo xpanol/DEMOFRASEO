@@ -1191,7 +1191,7 @@ $('stopBtn').onclick = () => {
     $('modalSHA').style.display='none';
 };
 
- init() {
+ async function init() {
     try {
         const tagsResponse = await fetch('https://raw.githubusercontent.com/xpanol/PLAYERS/refs/heads/main/data/marketing/tags.json');
 
