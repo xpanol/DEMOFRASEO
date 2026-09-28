@@ -723,7 +723,13 @@ async function addPlayer(aUrl, jUrl, type) {
         data.forEach(l => {
             l.text.split(' ').forEach((w, j) => {
                 const s = document.createElement('span'); s.textContent = w + ' ';
-                const sT = l.start.split(':').reduce((a,t)=>60*a+ +t,0); const eT = l.end.split(':').reduce((a,t)=>60*a+ +t,0);
+                const sT = typeof l.start === 'number'
+    ? l.start
+    : l.start.split(':').reduce((a,t)=>60*a+ +t,0);
+
+const eT = typeof l.end === 'number'
+    ? l.end
+    : l.end.split(':').reduce((a,t)=>60*a+ +t,0);
                 const wD = (eT - sT) / l.text.split(' ').length;
                 s.dataset.start = (sT + j*wD).toFixed(2); s.dataset.end = (sT + (j+1)*wD).toFixed(2);
                 line.appendChild(s);
@@ -1185,7 +1191,7 @@ $('stopBtn').onclick = () => {
     $('modalSHA').style.display='none';
 };
 
-async function init() {
+ init() {
     try {
         const tagsResponse = await fetch('https://raw.githubusercontent.com/xpanol/PLAYERS/refs/heads/main/data/marketing/tags.json');
 
